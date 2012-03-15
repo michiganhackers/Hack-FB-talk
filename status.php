@@ -17,19 +17,12 @@ if(!$user)
   header("Location: /login.php");
 
 function compare_statuses($status1, $status2) {
-  // Grab like and comment counts for both statuses
-  $like_count1 = get_response_count($status1, "likes");
-  $comment_count1 = get_response_count($status1, "comments");
-  $like_count2 = get_response_count($status2, "likes");
-  $comment_count2 = get_response_count($status2, "comments");
-
   // Calculate scores based on 1.5 * comment + like
-  $score1 = (1.5 * $comment_count1) + $like_count1;
-  $score2 = (1.5 * $comment_count2) + $like_count2;
+  $score1 = (1.5 * $status1["comment_count"]) + $status1["like_count"];
+  $score2 = (1.5 * $status2["comment_count"]) + $status2["like_count"];
 
   // Compare the two scores
-  if($score1 == $score2) return 0;
-  return ($score1 < $score2) ? +1 : -1;
+  return $score2 - $score1;
 }
 
 function get_response_count($status, $type) {
@@ -59,22 +52,34 @@ function get_response_count($status, $type) {
     $statuses = $facebook->api('/'.$user.'/statuses', "GET", array("limit"=>"100"));
     $statuses = $statuses["data"];
 
+    // Add like/comment count to each status
+    foreach($statuses as &$status) {
+      $status["like_count"] = get_response_count($status, "likes");
+      $status["comment_count"] = get_response_count($status, "comments");
+    }
+
     // Sort the statuses using our custom ranking function
     usort($statuses, compare_statuses);
 
     // Print each status message
-    foreach($statuses as $status) {
-      $like_count = get_response_count($status, "likes");
-      $comment_count = get_response_count($status, "comments");
+    echo 
+      "<div class='page-header'>
+        <h1>
+          Your most popular statuses
+          <small>as determined mostly arbitrarily</small>
+        </h1>
+      </div>";
 
+
+    foreach($statuses as $status) {
       // Only display status messages that have gotten at least 2 likes or comments
-      if($like_count > 1 || $comment_count > 1) {
+      if($status["like_count"] > 1 || $status["comment_count"] > 1) {
         echo "<div class='well'>";
         echo "<b>".$status["message"]."</b><br/>";
-        if($like_count)
-          echo $like_count." liked this<br/>";
-        if($comment_count)
-          echo $comment_count." commented on this<br/>";
+        if($status["like_count"])
+          echo $status["like_count"]." liked this<br/>";
+        if($status["comment_count"])
+          echo $status["comment_count"]." commented on this<br/>";
         echo "</div>";
       }
     }
