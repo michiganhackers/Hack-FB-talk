@@ -23,7 +23,10 @@ if(!$user)
 <body>
   <div class="container" style="margin-top: 20px">
     <h3>You are signed in!</h3><br/>
-    <a class='btn' href='/status.php'>Your top statuses</a>
+    <div class="btn-group">
+      <a class='btn' href='/status.php'>Statuses (Open graph)</a>
+      <a class='btn' href='/photo.php'>Photos (FQL)</a>
+    </div>
   </div>
 </body>
 </html>
