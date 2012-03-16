@@ -22,7 +22,12 @@ if(!$user)
 </head>
 <body>
   <div class="container" style="margin-top: 20px">
-    <h3>You are signed in!</h3><br/>
+    <div class='page-header'>
+      <h1>
+        Hack FB
+        <small>A Michigan Hackers exclusive</small>
+      </h1>
+    </div>
     <div class="btn-group">
       <a class='btn' href='/status.php'>Statuses (Open graph)</a>
       <a class='btn' href='/photo.php'>Photos (FQL)</a>

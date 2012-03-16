@@ -23,6 +23,12 @@ if($user)
 </head>
 <body>
   <div class='container' style='margin-top: 20px'>
+    <div class='page-header'>
+      <h1>
+        Log in
+      </h1>
+    </div>
+ 
     <? echo "<a class='btn' href=$loginUrl>Sign In</a>"; ?>
   </div>
 </body>

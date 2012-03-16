@@ -47,7 +47,15 @@ function get_response_count($status, $type) {
 </head>
 <body>
   <div class="container" style="margin-top: 20px">
-  <?php
+    <div class='page-header'>
+      <h1>
+        Your most popular statuses
+        <small>as determined mostly arbitrarily</small>
+      </h1>
+    </div>
+  
+    <?php
+    
     // Fetch the user's last 100 statuses
     $statuses = $facebook->api('/'.$user.'/statuses', "GET", array("limit"=>"100"));
     $statuses = $statuses["data"];
@@ -62,15 +70,6 @@ function get_response_count($status, $type) {
     usort($statuses, compare_statuses);
 
     // Print each status message
-    echo 
-      "<div class='page-header'>
-        <h1>
-          Your most popular statuses
-          <small>as determined mostly arbitrarily</small>
-        </h1>
-      </div>";
-
-
     foreach($statuses as $status) {
       // Only display status messages that have gotten at least 2 likes or comments
       if($status["like_count"] > 1 || $status["comment_count"] > 1) {
@@ -83,7 +82,8 @@ function get_response_count($status, $type) {
         echo "</div>";
       }
     }
-  ?>
+
+    ?>
   </div>
 </body>
 </html>
