@@ -19,3 +19,7 @@ Event.php
 ---------
 Uses FQL multiquery to first grab all of your friends, then all the ids of events they are attending and finally information about those events (name and picture)
 Displays the 10 events that have the most number of friends who have responded attending.
+
+Note:
+-----
+You need to enter your own app id and secret in /fb/config.php
