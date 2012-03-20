@@ -27,7 +27,8 @@ if(!$user)
       <h1>
         Upcoming Events
         <small>Drink Responsibly</small>
-      </h1>
+				<!-- and with friends! -->
+			</h1>
     </div>
   
     <?php

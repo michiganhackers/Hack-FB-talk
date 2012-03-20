@@ -59,7 +59,8 @@ function get_like_count($like_info) {
 
     /* Get most liked photos */
 
-    // Sort photos based on like count.
+    // Sort photos based on like count
+		// Any specific reason you did this...?
     usort($photos, 
           create_function(
             '$photo1, $photo2', 
