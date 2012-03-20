@@ -25,22 +25,18 @@ function compare_statuses($status1, $status2) {
   return $score2 - $score1;
 }
 
-// The function prototype did not treat '$status' as a 
-// pass-by-reference. However your foreach does. No bugs 
-// are present, but it could end up as a source of confusion
-function get_response_count(&$status, $type) {
-  // Could make this a singleton
+function get_response_count($status, $type) {
 	global $facebook;
+  $max_returned = 25; // The maximum number of likes fb returns by default
 
   $response_count = count($status[$type]["data"]);
-  // If response count == 25, most likely there are more. Fetch 101 of them
-  // and display 100+ if we get 101.
+  // If response count == $max_returned, most likely there are more. Fetch 100 of them
+  // and display 100+ if we get 100.
 
-	// Not sure where this '25' comes from. Should document that.
-  if($response_count == 25) {
-    $responses = $facebook->api("/".$status["id"]."/".$type, "GET", array("limit"=>"101"));
+  if($response_count == $max_returned) {
+    $responses = $facebook->api("/".$status["id"]."/".$type, "GET", array("limit"=>"100"));
     $response_count = count($responses["data"]);
-    if($response_count == 101) { $response_count = "100+"; }
+    if($response_count == 100) { $response_count = "100+"; }
   }
   return $response_count;
 }
@@ -78,11 +74,9 @@ function get_response_count(&$status, $type) {
 
     // Print each status message
     foreach($statuses as $status) {
-      // Only display status messages that have gotten at least 2 likes or comments
+      // Only display status messages that have gotten at least a certain number of likes/comments
 
-			// You may want to up the 'like_count' comparison to '2'. 
-			// That may give better 'subjective' filtering (IMO)
-      if($status["like_count"] > 1 || $status["comment_count"] > 1) {
+      if($status["like_count"] > 2 || $status["comment_count"] > 1) {
         echo "<div class='well'>";
         echo "<b>".$status["message"]."</b><br/>";
         if($status["like_count"])
