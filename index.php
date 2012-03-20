@@ -31,6 +31,7 @@ if(!$user)
     <div class="btn-group">
       <a class='btn' href='/status.php'>Statuses (Open graph)</a>
       <a class='btn' href='/photo.php'>Photos (FQL)</a>
+      <a class='btn' href='/event.php'>Events (FQL Multiquery)</a>
     </div>
   </div>
 </body>
