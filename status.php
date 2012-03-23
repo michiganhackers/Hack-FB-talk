@@ -10,7 +10,7 @@
  *
  */
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/fb/auth.php';
+require_once 'fb/auth.php';
 
 // If there is no logged in user, redirect to login.php
 if(!$user)

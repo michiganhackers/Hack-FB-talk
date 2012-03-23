@@ -8,7 +8,7 @@
  *
  */
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/fb/auth.php';
+require_once 'fb/auth.php';
 
 // Redirect to index.php if the user is already logged in
 if($user)
