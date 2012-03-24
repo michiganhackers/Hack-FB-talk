@@ -12,14 +12,14 @@ require_once 'fb/auth.php';
 
 // Redirect to index.php if the user is already logged in
 if($user)
-  header("Location: /");
+  header("Location: index.php");
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="/assets/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="assets/bootstrap.min.css" />
 </head>
 <body>
   <div class='container' style='margin-top: 20px'>

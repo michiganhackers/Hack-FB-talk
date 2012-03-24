@@ -14,7 +14,7 @@ require_once 'fb/auth.php';
 
 // If there is no logged in user, redirect to login.php
 if(!$user)
-  header("Location: /login.php");
+  header("Location: login.php");
 
 function compare_statuses($status1, $status2) {
   // Calculate scores based on 1.5 * comment + like
@@ -46,7 +46,7 @@ function get_response_count($status, $type) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" type="text/css" href="/assets/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="assets/bootstrap.min.css" />
 </head>
 <body>
   <div class="container" style="margin-top: 20px">

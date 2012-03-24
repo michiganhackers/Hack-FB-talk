@@ -11,7 +11,7 @@ require_once 'fb/auth.php';
 
 // If there is no logged in user, redirect to login.php
 if(!$user) 
-  header("Location: /login.php");
+  header("Location: login.php");
 
 ?>
 
@@ -29,9 +29,9 @@ if(!$user)
       </h1>
     </div>
     <div class="btn-group">
-      <a class='btn' href='/status.php'>Statuses (Open graph)</a>
-      <a class='btn' href='/photo.php'>Photos (FQL)</a>
-      <a class='btn' href='/event.php'>Events (FQL Multiquery)</a>
+      <a class='btn' href='status.php'>Statuses (Open graph)</a>
+      <a class='btn' href='photo.php'>Photos (FQL)</a>
+      <a class='btn' href='event.php'>Events (FQL Multiquery)</a>
     </div>
   </div>
 </body>
