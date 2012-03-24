@@ -19,7 +19,7 @@ $facebook = new Facebook(array(
 ));
 $user = $facebook->getUser();
 
-$params = array('redirect_uri' => 'http://hackers.gauravkulkarni.com',
+$params = array('redirect_uri' => $baseUrl,
                 'scope' => 'user_status, user_photos, friends_photos, user_events, friends_events');
 
 if($user) {
